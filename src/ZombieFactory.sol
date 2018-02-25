@@ -29,11 +29,11 @@ contract ZombieFactory {
         _createZombie(_name, randDna);
     }
 
-	function getZombiesCount() public constant returns (uint) {
+	function getZombiesCount() public view returns (uint) {
 	    return zombies.length;
 	}
 	
-	function getDnaByIndex(uint idx) public constant returns (uint) {
+	function getDnaByIndex(uint idx) public view returns (uint) {
 		return zombies[idx].dna;    
 	}
 }
