@@ -5,17 +5,25 @@ import "ds-test/test.sol";
 import "./ZombieFactory.sol";
 
 contract ZombieFactoryTest is DSTest {
-    ZombieFactory l;
+    ZombieFactory factory;
 
     function setUp() public {
-        l = new ZombieFactory();
+        factory = new ZombieFactory();
     }
 
-    function testFail_basic_sanity() public {
-        assertTrue(false);
+
+    function test_createRandomZombie() public {
+        assertEq( factory.getZombiesCount(), 0);
+        factory.createRandomZombie("a");
+        assertEq( factory.getZombiesCount(), 1);
+        factory.createRandomZombie("b");
+        assertEq( factory.getZombiesCount(), 2);
+       
+        uint aDna = factory.getDnaByIndex(0);
+        uint bDna = factory.getDnaByIndex(1);
+        
+        // different names should lead to different DNAs
+        assert( bDna != aDna );
     }
 
-    function test_basic_sanity() public {
-        assertTrue(true);
-    }
 }
