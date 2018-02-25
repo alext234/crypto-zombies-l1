@@ -1,4 +1,4 @@
-# ZombiesFactory, lesson 1
+# CryptoZombies, lesson 1
 
 `src/ZombieFactory.sol` is the source code completed as  
 I followed the tutorial from https://share.cryptozombies.io/en/lesson/1/share/alext?id=Z2l0aHVifDE2MjQ1MjI= 
