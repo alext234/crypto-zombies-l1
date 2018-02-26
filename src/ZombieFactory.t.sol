@@ -4,7 +4,7 @@ import "ds-test/test.sol";
 
 import "./ZombieFactory.sol";
 
-contract ZombieFactoryTest is DSTest {
+contract ZombieFactoryTest is DSTest, ZombieFactoryEvents {
     ZombieFactory factory;
 
     function setUp() public {
@@ -13,11 +13,18 @@ contract ZombieFactoryTest is DSTest {
 
 
     function test_createRandomZombie() public {
+        expectEventsExact(factory);
+        
         assertEq( factory.getZombiesCount(), 0);
-        factory.createRandomZombie("a");
+        factory.createRandomZombie("a");        
         assertEq( factory.getZombiesCount(), 1);
-        factory.createRandomZombie("b");
+        // check for event
+        NewZombie(0, "a", factory.getDnaByIndex(0));
+
+        factory.createRandomZombie("b");        
         assertEq( factory.getZombiesCount(), 2);
+        // check for event
+        NewZombie(1, "b", factory.getDnaByIndex(1));
        
         uint aDna = factory.getDnaByIndex(0);
         uint bDna = factory.getDnaByIndex(1);
